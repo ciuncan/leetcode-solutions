@@ -9,7 +9,7 @@ end DebugMode
 
 def [T: Debuggable] (t: T).tap(lbl: => String = "")(using debugMode: DebugMode): T =
   if debugMode == DebugMode.On then
-    val labelPart = if (lbl.isEmpty) "" else s"$lbl: "
+    val labelPart = if lbl.isEmpty then "" else s"$lbl: "
     println(labelPart + t.debug)
   t
 
