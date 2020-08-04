@@ -5,8 +5,8 @@ import MyHashSet._
 class MyHashSet(private var _capacity: Int = INITIAL_CAPACITY)
     extends collection.mutable.AbstractSet[Int] {
 
-  private[week1] var _arr  = Array.fill[Int](_capacity)(UNOCCUPIED)
-  private var _size = 0
+  private[week1] var _arr = Array.fill[Int](_capacity)(UNOCCUPIED)
+  private var _size       = 0
 
   override def add(v: Int): Boolean = {
     findIndex(v) match {
