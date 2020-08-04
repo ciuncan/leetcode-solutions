@@ -11,4 +11,3 @@ object ValidPalindrome {
     .take(s.length / 2)
     .forall({ case (start, end) => start == end })
 }
-
