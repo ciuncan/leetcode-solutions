@@ -3,7 +3,7 @@ package ciuncan.leetcode.august_challenge.week1
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-class DesignHashSetSpec extends AnyFlatSpec with Matchers {
+class DesignHashSetSpec extends AnyFlatSpec with Matchers:
   "MyHashSet" should "add distinct numbers, size increase and iterator should return them" in {
     val hashSet = new MyHashSet(4)
     hashSet.add(1)
@@ -79,28 +79,26 @@ class DesignHashSetSpec extends AnyFlatSpec with Matchers {
 
     var opCount      = 0L
     val MAX_OP_COUNT = 1000L
-    while (hashSet.size < MyHashSet.MAX_CAPACITY && opCount < MAX_OP_COUNT) {
+    while hashSet.size < MyHashSet.MAX_CAPACITY && opCount < MAX_OP_COUNT do
       opCount += 1
-      if (random.nextBoolean || random.nextBoolean) {
+      if random.nextBoolean || random.nextBoolean then
         val value = random.nextInt.abs
         hashSet.add(value)
         refImpl.add(value)
 
         hashSet should be(refImpl)
-      } else if (random.nextBoolean) {
+      else if random.nextBoolean then
         val value = random.between(0, refImpl.size * 2 + 1)
-        if (refImpl.contains(value))
+        if refImpl.contains(value) then
           hashSet should contain(value)
         else
           hashSet should not contain value
-      } else {
+      else
         val value = random.between(0, refImpl.size * 2 + 1)
         hashSet.remove(value)
         refImpl.remove(value)
 
         hashSet should be(refImpl)
-      }
-    }
   }
   it should "pass the failing leetcode test" in {
     val hashSet = new MyHashSet
@@ -144,4 +142,3 @@ class DesignHashSetSpec extends AnyFlatSpec with Matchers {
       }) should be(None)
   }
 
-}

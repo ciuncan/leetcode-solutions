@@ -1,6 +1,6 @@
 package ciuncan.leetcode.august_challenge.week1
 
-object ValidPalindrome {
+object ValidPalindrome:
 
   def simplifyIterator(s: Iterator[Char]): Iterator[Char] =
     s
@@ -12,4 +12,3 @@ object ValidPalindrome {
       .zip(simplifyIterator(s.reverseIterator))
       .take(s.length / 2)
       .forall({ case (start, end) => start == end })
-}

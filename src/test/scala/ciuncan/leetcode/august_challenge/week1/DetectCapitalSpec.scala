@@ -3,7 +3,7 @@ package ciuncan.leetcode.august_challenge.week1
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-class DetectCapitalSpec extends AnyFlatSpec with Matchers {
+class DetectCapitalSpec extends AnyFlatSpec with Matchers:
   import DetectCapital._
   "detectCapitalUse" should "return true for strings with length less than 2" in {
     detectCapitalUse("") should be(true)
@@ -24,4 +24,3 @@ class DetectCapitalSpec extends AnyFlatSpec with Matchers {
     detectCapitalUse("AaA") should be(false)
     detectCapitalUse("AAa") should be(false)
   }
-}

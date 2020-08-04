@@ -3,7 +3,7 @@ package ciuncan.leetcode.august_challenge.week1
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-class PowerOfFourSpec extends AnyFlatSpec with Matchers {
+class PowerOfFourSpec extends AnyFlatSpec with Matchers:
   import PowerOfFour._
   "isPowerOfFour" should "return true for positive numbers that are power of 4" in {
     isPowerOfFour(1) should be(true)
@@ -23,4 +23,3 @@ class PowerOfFourSpec extends AnyFlatSpec with Matchers {
     isPowerOfFour(Int.MinValue) should be(false)
     isPowerOfFour(Int.MaxValue) should be(false)
   }
-}
