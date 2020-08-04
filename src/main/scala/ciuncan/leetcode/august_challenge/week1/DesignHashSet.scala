@@ -8,28 +8,24 @@ class MyHashSet(private var _capacity: Int = INITIAL_CAPACITY)
   private[week1] var _arr = Array.fill[Int](_capacity)(UNOCCUPIED)
   private var _size       = 0
 
-  override def add(v: Int): Boolean = {
+  override def add(v: Int): Boolean =
     findIndex(v) match {
-      case Left(designatedIndex) => {
+      case Left(designatedIndex) =>
         if (!addEnsuringCapacity(v)) {
           _arr(designatedIndex) = v
           _size += 1
         }
         true
-      }
-      case Right(foundIndex)     => {
+      case Right(foundIndex)     =>
         false
-      }
     }
-  }
 
-  override def remove(v: Int): Boolean = {
+  override def remove(v: Int): Boolean =
     // see https://en.wikipedia.org/wiki/Open_addressing#Example_pseudocode
     findIndex(v) match {
-      case Left(designatedIndex) => {
+      case Left(designatedIndex) =>
         false
-      }
-      case Right(foundIndex)     => {
+      case Right(foundIndex)     =>
         _size -= 1
         var i    = foundIndex
         var j    = i
@@ -40,15 +36,13 @@ class MyHashSet(private var _capacity: Int = INITIAL_CAPACITY)
             var r2Cont = true
             while (r2Cont) {
               j = (j + 1) % _capacity
-              if (_arr(j) == UNOCCUPIED) {
+              if (_arr(j) == UNOCCUPIED)
                 loop.break()
-              }
               val k = _arr(j).hashCode % _capacity
-              if (i <= j) {
+              if (i <= j)
                 r2Cont = i < k && k <= j
-              } else {
+              else
                 r2Cont = i < k || k <= j
-              }
             }
 
             _arr(i) = _arr(j)
@@ -56,9 +50,7 @@ class MyHashSet(private var _capacity: Int = INITIAL_CAPACITY)
           }
         }
         true
-      }
     }
-  }
 
   override def contains(v: Int): Boolean = findIndex(v).isRight
   def capacity: Int                      = _capacity
@@ -79,31 +71,26 @@ class MyHashSet(private var _capacity: Int = INITIAL_CAPACITY)
 
   private def findIndex(v: Int): Either[DesignatedIndex, FoundIndex] = {
     var nextIndex = v.hashCode % _capacity
-    while (_arr(nextIndex) != UNOCCUPIED && _arr(nextIndex) != v) {
+    while (_arr(nextIndex) != UNOCCUPIED && _arr(nextIndex) != v)
       nextIndex = (nextIndex + 1) % _capacity
-    }
-    if (_arr(nextIndex) == UNOCCUPIED) {
+    if (_arr(nextIndex) == UNOCCUPIED)
       Left(nextIndex)
-    } else {
+    else
       Right(nextIndex)
-    }
   }
 
-  private def addEnsuringCapacity(v: Int): Boolean = {
+  private def addEnsuringCapacity(v: Int): Boolean =
     if (size >= _capacity * LOAD_FACTOR && size < MAX_CAPACITY) {
       val newAllocation = new MyHashSet((_capacity * 2).min(MAX_CAPACITY))
-      for (item <- this) {
+      for (item <- this)
         newAllocation.add(item)
-      }
       newAllocation.add(v)
       _arr = newAllocation._arr
       _size = newAllocation._size
       _capacity = newAllocation._capacity
       true
-    } else {
+    } else
       false
-    }
-  }
 
 }
 object MyHashSet {

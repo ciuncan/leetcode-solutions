@@ -89,11 +89,10 @@ class DesignHashSetSpec extends AnyFlatSpec with Matchers {
         hashSet should be(refImpl)
       } else if (random.nextBoolean) {
         val value = random.between(0, refImpl.size * 2 + 1)
-        if (refImpl.contains(value)) {
+        if (refImpl.contains(value))
           hashSet should contain(value)
-        } else {
+        else
           hashSet should not contain value
-        }
       } else {
         val value = random.between(0, refImpl.size * 2 + 1)
         hashSet.remove(value)
@@ -108,7 +107,7 @@ class DesignHashSetSpec extends AnyFlatSpec with Matchers {
     val refImpl = new scala.collection.mutable.HashSet[Int]
 
     val resourcePath =
-      s"${getClass.getPackageName.replaceAllLiterally(".", "/")}/failing_test_case1.txt"
+      s"${getClass.getPackage.getName.replace(".", "/")}/failing_test_case1.txt"
 
     val List(commandsJson, argumentsJson) = io.Source
       .fromInputStream(
