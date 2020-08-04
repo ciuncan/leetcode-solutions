@@ -3,7 +3,7 @@ package ciuncan.utils
 import org.scalatest.flatspec.AnyFlatSpec
 import org.scalatest.matchers.should.Matchers
 
-class DebuggableSpec extends AnyFlatSpec with Matchers:
+class DebuggableSpec extends AnyFlatSpec with Matchers {
   import ciuncan.utils.Debuggable.{given _}
 
   "Debuggable" should "return double-quoted version of given strings" in {
@@ -30,3 +30,4 @@ class DebuggableSpec extends AnyFlatSpec with Matchers:
     false.debug should be("false")
     (new Object).debug should startWith("java.lang.Object@")
   }
+}
